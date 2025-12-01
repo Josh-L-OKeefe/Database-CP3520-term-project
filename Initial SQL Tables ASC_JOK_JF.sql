@@ -1,3 +1,7 @@
+CREATE DATABASE CP3520_2;
+USE CP3520_2;
+
+
 CREATE TABLE Rooms(
     rid INT PRIMARY KEY,
     capacity INT,
@@ -22,9 +26,9 @@ CREATE TABLE Instructor(
 
 CREATE TABLE Bookings(
     bid INT PRIMARY KEY,
-    startTime int,
-    endTime int,
-    bookingDate int,
+    startTime TIME,
+    endTime TIME,
+    bookingDate DATE,
     bookingStatus TEXT,
     cid int,
     rid int,
