@@ -25,7 +25,7 @@ CREATE TABLE Instructor(
 );
 
 CREATE TABLE Bookings(
-    bid INT PRIMARY KEY,
+    bid INT AUTO_INCREMENT PRIMARY KEY,
     startTime TIME,
     endTime TIME,
     DOW TEXT,
@@ -44,21 +44,67 @@ CREATE TABLE Administrator(
     adminInfo TEXT
 );
 
+INSERT INTO Rooms (capacity, roomLocation, techFeatures, availableStatus)
+VALUES (30, 101, 'Projector, Whiteboard', TRUE);
+
+INSERT INTO Rooms (capacity, roomLocation, techFeatures, availableStatus)
+VALUES (20, 102, 'Computers', TRUE);
+
+INSERT INTO Rooms (capacity, roomLocation, techFeatures, availableStatus)
+VALUES (20, 103, 'Whiteboard', TRUE);
+
+INSERT INTO Rooms (capacity, roomLocation, techFeatures, availableStatus)
+VALUES (20, 104, 'Whiteboard', TRUE);
+
+INSERT INTO Rooms (capacity, roomLocation, techFeatures, availableStatus)
+VALUES (20, 105, 'Projector, Computers', TRUE);
+
+INSERT INTO Rooms (capacity, roomLocation, techFeatures, availableStatus)
+VALUES (30, 201, 'Projector, Whiteboard', TRUE);
+
+INSERT INTO Rooms (capacity, roomLocation, techFeatures, availableStatus)
+VALUES (20, 202, 'Computers', TRUE);
+
+INSERT INTO Rooms (capacity, roomLocation, techFeatures, availableStatus)
+VALUES (20, 203, 'Whiteboard', TRUE);
+
+INSERT INTO Rooms (capacity, roomLocation, techFeatures, availableStatus)
+VALUES (20, 204, 'Whiteboard', TRUE);
+
+INSERT INTO Rooms (capacity, roomLocation, techFeatures, availableStatus)
+VALUES (20, 205, 'Projector, Computers', TRUE);
+
+
+INSERT INTO Courses(cid, courseName, creditHours, requirements)
+VALUES (100, "Databases", 3, "None");
+
+INSERT INTO Courses(cid, courseName, creditHours, requirements)
+VALUES (101, "Math I", 3, "None");
+
+INSERT INTO Courses(cid, courseName, creditHours, requirements)
+VALUES (102, "Physics", 5, "None");
+
+INSERT INTO Courses(cid, courseName, creditHours, requirements)
+VALUES (103, "Software Engineering", 3, "None");
+
+INSERT INTO Courses(cid, courseName, creditHours, requirements)
+VALUES (104, "Digital Systems I", 5, "None");
+
 
 -- View available rooms with capacity over p.
-Select * from Rooms WHERE capacity > 20;
+--Select * from Rooms WHERE capacity > 20;
 
 -- View available rooms with capacity over p and technology t.
-Select * from Rooms WHERE capacity > 20 AND techFeatures = "";
+--Select * from Rooms WHERE capacity > 20 AND techFeatures = "";
 
 -- Reject all bookings for room r. 
-Update Bookings SET bookingStatus = "Reject" Where rid = 311;
+--Update Bookings SET bookingStatus = "Reject" Where rid = 311;
 
 -- Cancel booking b.
-DELETE FROM Bookings WHERE bid = 12;
+--DELETE FROM Bookings WHERE bid = 12;
 
 -- Accept booking b.
-Update Bookings SET bookingStatus = "Approve" Where bid = 15;
+--Update Bookings SET bookingStatus = "Approve" Where bid = 15;
 
 
 
@@ -70,23 +116,23 @@ Update Bookings SET bookingStatus = "Approve" Where bid = 15;
 -- Similar to how all our classes for third year Computer Eng Tech are all on the third floor
 -- The command is trying to view all the avalible data for rooms within a particular area, in the example it would be all rooms on the third floor
 
-Select * from Rooms WHERE roomLocation Between 300 and 399;
+--Select * from Rooms WHERE roomLocation Between 300 and 399;
 
 -- This command views all bookings for a specific room. This command could be used by instructors to view all the information about a specific room
 -- which would assist when booking for the specified location.
 
-Select * FROM Bookings WHERE rid = 221;
+--Select * FROM Bookings WHERE rid = 221;
 
 -- This command views all the information about rooms based on the specified tech features. In the example, this could be used by an instructor to
 -- plan their room booking based on the technology description they need. This may not work as the text description is very specific to what is stored
 -- So if the instructor gets too specific and enters "Macs" for example instead of "Computers" they may not find the correct information.
-Select * From Rooms WHERE techFeatures = "Computers";
+--Select * From Rooms WHERE techFeatures = "Computers";
 
 -- This command is used to reject any bookings after a certain time. This command could be used by the system automatically to reject any bookings that
 -- are attempted to be made after operational hours. This command may not work as someone could put in a time outside the boundary but confuse the AM/PM.
 -- Therefore the command could fail and book a class based on military time and the user expect a booking at a different time. 
-Update Bookings SET bookingStatus = "Reject" WHERE startTime > 2000 AND startTime < 0800;
+--Update Bookings SET bookingStatus = "Reject" WHERE startTime > 2000 AND startTime < 0800;
 
 -- This command would show all the information for bookings made by a specific instructor based on their Instructor ID. This could be used by an Admin to
 -- assess the bookings of the specified instructors. This may not work in the event that the admin enters the wrong or invalid instructor ID.
-Select * From Bookings where iid = 243;
+--Select * From Bookings where iid = 243;
